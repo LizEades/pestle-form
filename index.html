@@ -63,43 +63,53 @@
   <table>
     <thead>
       <tr>
-        <th>External Force</th>
+        <th>PESTLE Category</th>
+        <th>Trend or Signal (e.g. behaviour, regulation, tech)</th>
+        <th>Potential Innovation Relevance</th>
         <th>Source and URL</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>Description of political driver here</td>
-        <td>Government policy website</td>
+        <td>Political</td>
+        <td>Example: New local content laws</td>
+        <td>Makes sustainable sourcing more attractive</td>
+        <td>https://www.govsite.com/local-content-law</td>
       </tr>
       <tr>
-        <td>Second political factor...</td>
-        <td>News source or regulation site</td>
+        <td>Economic</td>
+        <td>High inflation rates in raw materials</td>
+        <td>May drive reformulation or concentrate formats</td>
+        <td>https://www.worldbank.org/econ-data</td>
       </tr>
       <tr>
-        <td>Economic factor example...</td>
-        <td>e.g. IMF report link</td>
+        <td>Social</td>
+        <td>Increased dual-income households</td>
+        <td>Supports convenience-focused design</td>
+        <td>https://www.statista.com/social-trends</td>
       </tr>
       <tr>
-        <td>Social trend such as shifting household structure</td>
-        <td>Statista or McKinsey link</td>
+        <td>Technological</td>
+        <td>IoT-enabled dispensing systems</td>
+        <td>Supports smart appliance integration</td>
+        <td>https://www.techradar.com/iot-home</td>
       </tr>
       <tr>
-        <td>Technological development: smart home integration</td>
-        <td>Tech journal or patent info</td>
+        <td>Legal</td>
+        <td>Stricter product safety labelling</td>
+        <td>Requires packaging redesign</td>
+        <td>https://www.legislation.gov.uk</td>
       </tr>
       <tr>
-        <td>Legal update: new safety standards</td>
-        <td>Govt law database link</td>
-      </tr>
-      <tr>
-        <td>Environmental pressure: plastic bans or emission policies</td>
-        <td>NGO or policy paper</td>
+        <td>Environmental</td>
+        <td>Single-use plastic restrictions</td>
+        <td>Opportunity for refill and reuse models</td>
+        <td>https://www.unep.org/plastics-policy</td>
       </tr>
     </tbody>
   </table>
 
-  <p style="font-size: 12pt;"><strong>Key Opportunity:</strong><br>
+  <p style="font-size: 12pt; font-family: Arial, sans-serif;"><strong>Key Opportunity:</strong><br>
   Summary statement of the most promising innovation space, based on the above factors and tensions.</p>
 
   <button onclick="exportToWord()">Export to Word</button>
@@ -109,7 +119,7 @@
       const header = '<h2 style="font-family: Arial; font-size: 12pt;">PESTLE Export</h2>';
       const table = document.querySelector('table').outerHTML;
       const key = document.querySelector('p').outerHTML;
-      const html = `<!DOCTYPE html><html><head><meta charset='utf-8'><title>PESTLE Export</title></head><body>${header}${table}${key}</body></html>`;
+      const html = `<!DOCTYPE html><html><head><meta charset='utf-8'><title>PESTLE Export</title></head><body style='font-family: Arial; font-size: 10pt;'>${header}${table}${key}</body></html>`;
       const blob = new Blob([html], { type: 'application/msword' });
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
