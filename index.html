@@ -33,11 +33,19 @@
       background-color: #f6f6f6;
       text-align: left;
     }
+    th em {
+      font-style: normal;
+      font-weight: normal;
+      color: #333;
+    }
     textarea {
       width: 100%;
       height: 60px;
       font-size: 14px;
       box-sizing: border-box;
+    }
+    #opportunity {
+      height: 160px;
     }
     button {
       background-color: #ba372a;
@@ -64,12 +72,12 @@
 
   <script>
     const sections = [
-      { prefix: 'p', title: 'Political', hint: 'E.g. regulation, trade policy, government incentives' },
-      { prefix: 'e', title: 'Economic', hint: 'E.g. inflation, interest rates, logistics costs' },
-      { prefix: 's', title: 'Social', hint: 'E.g. demographic change, household routines' },
-      { prefix: 't', title: 'Technological', hint: 'E.g. AI, IoT, smart packaging' },
-      { prefix: 'l', title: 'Legal', hint: 'E.g. labelling, safety, consumer rights' },
-      { prefix: 'env', title: 'Environmental', hint: 'E.g. plastic bans, emission targets, climate impact' }
+      { prefix: 'p', title: 'Political', hint: 'e.g. regulation, trade policy, government incentives' },
+      { prefix: 'e', title: 'Economic', hint: 'e.g. inflation, interest rates, logistics costs' },
+      { prefix: 's', title: 'Social', hint: 'e.g. demographic change, household routines' },
+      { prefix: 't', title: 'Technological', hint: 'e.g. AI, IoT, smart packaging' },
+      { prefix: 'l', title: 'Legal', hint: 'e.g. labelling, safety, consumer rights' },
+      { prefix: 'env', title: 'Environmental', hint: 'e.g. plastic bans, emission targets, climate impact' }
     ];
 
     const container = document.getElementById("pestle-tables");
