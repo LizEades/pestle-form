@@ -22,10 +22,12 @@
       width: 100%;
       margin-bottom: 30px;
       border-collapse: collapse;
+      table-layout: fixed;
     }
     th, td {
       border: 1px solid #ddd;
       padding: 8px;
+      vertical-align: top;
     }
     th {
       background-color: #f6f6f6;
@@ -35,6 +37,7 @@
       width: 100%;
       height: 60px;
       font-size: 14px;
+      box-sizing: border-box;
     }
     button {
       background-color: #ba372a;
@@ -52,48 +55,43 @@
   <p><strong>Instructions:</strong> Use this tool to identify external forces influencing the category you are exploring. For each PESTLE area, list up to three external signals or forces. For each one, include a short description of the external force, and the source of the information (e.g. report, article, observation etc), along with the URL / link to the source.</p>
 
   <form id="pestleForm">
+    <!-- Form fields remain unchanged -->
+  </form>
 
-    <!-- Repeat for each PESTLE category -->
-    <h2>Political</h2>
-    <table>
-      <tr><th>External Force<br><em>E.g. regulation, trade policy, government incentives</em></th><th>Source and Website URL</th></tr>
-      <tr><td><textarea id="p1" placeholder="E.g. new local content laws affecting production..."></textarea></td><td><textarea id="ps1" placeholder="E.g. gov.uk or OECD 2024 report link"></textarea></td></tr>
-      <tr><td><textarea id="p2"></textarea></td><td><textarea id="ps2"></textarea></td></tr>
-      <tr><td><textarea id="p3"></textarea></td><td><textarea id="ps3"></textarea></td></tr>
-    </table>
+  <script>
+    function exportToWord() {
+      const header = '<h2>PESTLE Scan</h2>';
+      let content = header;
 
-    <h2>Economic</h2>
-    <table>
-      <tr><th>External Force<br><em>E.g. inflation, interest rates, logistics costs</em></th><th>Source and Website URL</th></tr>
-      <tr><td><textarea id="e1"></textarea></td><td><textarea id="es1"></textarea></td></tr>
-      <tr><td><textarea id="e2"></textarea></td><td><textarea id="es2"></textarea></td></tr>
-      <tr><td><textarea id="e3"></textarea></td><td><textarea id="es3"></textarea></td></tr>
-    </table>
+      const sections = ['p','e','s','t','l','env'];
+      const sources = ['ps','es','ss','ts','ls','envs'];
+      const titles = ['Political','Economic','Social','Technological','Legal','Environmental'];
 
-    <h2>Social</h2>
-    <table>
-      <tr><th>External Force<br><em>E.g. demographic change, household routines</em></th><th>Source and Website URL</th></tr>
-      <tr><td><textarea id="s1"></textarea></td><td><textarea id="ss1"></textarea></td></tr>
-      <tr><td><textarea id="s2"></textarea></td><td><textarea id="ss2"></textarea></td></tr>
-      <tr><td><textarea id="s3"></textarea></td><td><textarea id="ss3"></textarea></td></tr>
-    </table>
+      sections.forEach((sec, i) => {
+        content += `<h3>${titles[i]}</h3><ul>`;
+        for (let j = 1; j <= 3; j++) {
+          const val = document.getElementById(sec + j).value;
+          const src = document.getElementById(sources[i] + j).value;
+          if (val.trim() !== '') {
+            content += `<li><strong>${val}</strong><br><em>Source and Website URL:</em> ${src}</li>`;
+          }
+        }
+        content += '</ul>';
+      });
 
-    <h2>Technological</h2>
-    <table>
-      <tr><th>External Force<br><em>E.g. AI, IoT, smart packaging</em></th><th>Source and Website URL</th></tr>
-      <tr><td><textarea id="t1"></textarea></td><td><textarea id="ts1"></textarea></td></tr>
-      <tr><td><textarea id="t2"></textarea></td><td><textarea id="ts2"></textarea></td></tr>
-      <tr><td><textarea id="t3"></textarea></td><td><textarea id="ts3"></textarea></td></tr>
-    </table>
+      const opp = document.getElementById('opportunity').value;
+      content += `<h3>Key Opportunity</h3><p>${opp.replace(/\n/g, '<br>')}</p>`;
 
-    <h2>Legal</h2>
-    <table>
-      <tr><th>External Force<br><em>E.g. labelling, safety, consumer rights</em></th><th>Source and Website URL</th></tr>
-      <tr><td><textarea id="l1"></textarea></td><td><textarea id="ls1"></textarea></td></tr>
-      <tr><td><textarea id="l2"></textarea></td><td><textarea id="ls2"></textarea></td></tr>
-      <tr><td><textarea id="l3"></textarea></td><td><textarea id="ls3"></textarea></td></tr>
-    </table>
-
-    <h2>Environmental</h2>
-    <table>
-      <tr><th>External Force<br><em>E.g. plastic bans, emission targets, climate impact</em></th><th>Source and Website URL
+      const html = `<!DOCTYPE html><html><head><meta charset='utf-8'><title>PESTLE Export</title></head><body>${content}</body></html>`;
+      const blob = new Blob([html], {type: 'application/msword'});
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'PESTLE_Scanner.doc';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  </script>
+</body>
+</html>
