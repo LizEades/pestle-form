@@ -1,201 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PESTLE Opportunity Scanner</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 40px;
-      max-width: 1000px;
       font-size: 10pt;
+      max-width: 1100px;
     }
-    h1, h2 {
+    h1 {
+      font-size: 16pt;
       color: #ba372a;
-      font-size: 12pt;
     }
-    label {
-      font-weight: bold;
-      margin-top: 20px;
-      display: block;
+    h2 {
+      font-size: 14pt;
+      color: #ba372a;
+      margin-top: 40px;
     }
     table {
       width: 100%;
-      margin-bottom: 30px;
       border-collapse: collapse;
-      table-layout: fixed;
+      margin-bottom: 30px;
       font-size: 10pt;
     }
     th, td {
       border: 1px solid #ccc;
-      padding: 8px;
+      padding: 10px;
       vertical-align: top;
-      text-align: left;
     }
     th {
       background-color: #f6f6f6;
+      text-align: left;
+    }
+    textarea {
+      width: 100%;
+      height: 60px;
+      font-family: Arial, sans-serif;
+      font-size: 10pt;
+      box-sizing: border-box;
     }
     .example {
       color: #666;
+      font-style: italic;
+      font-size: 9pt;
+    }
+    #opportunity {
+      height: 140px;
+      margin-top: 10px;
     }
     button {
       background-color: #ba372a;
       color: white;
-      padding: 10px 20px;
+      padding: 10px 16px;
       border: none;
       font-size: 12pt;
       cursor: pointer;
-      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-
   <h1>PESTLE Opportunity Scanner</h1>
+  <p><strong>Instructions:</strong> Use this tool to identify external forces influencing the category you are exploring. For each PESTLE area, add up to three external signals or forces. Include a short description, note how it may relate to innovation, and add the source and URL. Example prompts are shown in grey.</p>
 
-  <table>
-    <thead>
-      <tr>
-        <th>PESTLE Category</th>
-        <th>Trend or Signal<br><span class="example">e.g. behaviour, regulation, tech</span></th>
-        <th>Potential Innovation Relevance</th>
-        <th>Source and URL</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Political</td>
-        <td>New local content laws<br><span class="example">e.g. government sourcing policy updates</span></td>
-        <td>Makes sustainable sourcing more attractive</td>
-        <td>https://www.govsite.com/local-content-law</td>
-      </tr>
-      <tr>
-        <td>Political</td>
-        <td>Trade tariff reforms<br><span class="example">e.g. reduced import costs</span></td>
-        <td>Encourages localisation of production</td>
-        <td>https://www.wto.org/trade-news</td>
-      </tr>
-      <tr>
-        <td>Political</td>
-        <td>Policy incentives for green tech<br><span class="example">e.g. subsidies or tax benefits</span></td>
-        <td>Drives eco-product development</td>
-        <td>https://www.govgreen.org/policy</td>
-      </tr>
-      <tr>
-        <td>Economic</td>
-        <td>Raw material inflation<br><span class="example">e.g. price volatility of surfactants</span></td>
-        <td>Promotes concentrate formats</td>
-        <td>https://www.worldbank.org/econ-data</td>
-      </tr>
-      <tr>
-        <td>Economic</td>
-        <td>Changing household spending<br><span class="example">e.g. cost-of-living impact</span></td>
-        <td>Supports low-cost sustainable options</td>
-        <td>https://www.abcnews.com/budget-trends</td>
-      </tr>
-      <tr>
-        <td>Economic</td>
-        <td>Rise in delivery costs<br><span class="example">e.g. logistics or courier demand</span></td>
-        <td>Boosts subscription consolidation</td>
-        <td>https://www.logisticsupdate.com</td>
-      </tr>
-      <tr>
-        <td>Social</td>
-        <td>Dual-income households<br><span class="example">e.g. need for convenience</span></td>
-        <td>Enables automation appeal</td>
-        <td>https://www.statista.com/social-trends</td>
-      </tr>
-      <tr>
-        <td>Social</td>
-        <td>Eco-conscious shoppers<br><span class="example">e.g. rise in refill purchases</span></td>
-        <td>Aligns with packaging innovation</td>
-        <td>https://www.mckinsey.com/sustainability</td>
-      </tr>
-      <tr>
-        <td>Social</td>
-        <td>Time-poor families<br><span class="example">e.g. daily time use data</span></td>
-        <td>Justifies smart dispenser models</td>
-        <td>https://www.abs.gov.au/time-use</td>
-      </tr>
-      <tr>
-        <td>Technological</td>
-        <td>IoT dispenser tech<br><span class="example">e.g. dose tracking & reordering</span></td>
-        <td>Supports subscription services</td>
-        <td>https://www.techradar.com/iot-home</td>
-      </tr>
-      <tr>
-        <td>Technological</td>
-        <td>Biotech surfactants<br><span class="example">e.g. enzyme-based formulas</span></td>
-        <td>Drives innovation in formulation</td>
-        <td>https://www.bio.org/news</td>
-      </tr>
-      <tr>
-        <td>Technological</td>
-        <td>Smartphone integration<br><span class="example">e.g. usage alerts</span></td>
-        <td>Boosts user engagement</td>
-        <td>https://www.wired.com/smart-living</td>
-      </tr>
-      <tr>
-        <td>Legal</td>
-        <td>Updated labelling laws<br><span class="example">e.g. hazard warnings</span></td>
-        <td>Requires packaging adaptation</td>
-        <td>https://www.legislation.gov.uk</td>
-      </tr>
-      <tr>
-        <td>Legal</td>
-        <td>Online sale regulations<br><span class="example">e.g. subscription T&Cs</span></td>
-        <td>Needs compliance reviews</td>
-        <td>https://www.consumerprotection.gov.au</td>
-      </tr>
-      <tr>
-        <td>Legal</td>
-        <td>IP disputes on refill formats<br><span class="example">e.g. dispenser patents</span></td>
-        <td>Informs design limitations</td>
-        <td>https://www.wipo.int</td>
-      </tr>
-      <tr>
-        <td>Environmental</td>
-        <td>Plastic bans<br><span class="example">e.g. national packaging rules</span></td>
-        <td>Promotes zero-waste formats</td>
-        <td>https://www.unep.org/plastics-policy</td>
-      </tr>
-      <tr>
-        <td>Environmental</td>
-        <td>Carbon-neutral targets<br><span class="example">e.g. Scope 3 supply chain</span></td>
-        <td>Shapes supply and logistics innovation</td>
-        <td>https://www.carbontrust.com/resources</td>
-      </tr>
-      <tr>
-        <td>Environmental</td>
-        <td>Refill culture momentum<br><span class="example">e.g. refill store growth</span></td>
-        <td>Encourages reuse innovation</td>
-        <td>https://www.circularonline.co.uk</td>
-      </tr>
-    </tbody>
-  </table>
+  <form id="pestleForm"></form>
 
-  <p style="font-size: 12pt; font-family: Arial, sans-serif;"><strong>Key Opportunity:</strong><br>
-  Summary statement of the most promising innovation space, based on the above factors and tensions.</p>
+  <h2>Key Opportunity</h2>
+  <textarea id="opportunity" placeholder="e.g. Growing trend in refill formats aligns with sustainable innovation goals..."></textarea>
 
-  <button onclick="exportToWord()">Export to Word</button>
+  <br><br>
+  <button onclick="exportToWord()" type="button">Export to Word</button>
 
   <script>
+    const categories = [
+      { name: 'Political', hint: 'e.g. government regulation, trade policy' },
+      { name: 'Economic', hint: 'e.g. inflation, household income, logistics' },
+      { name: 'Social', hint: 'e.g. demographic trends, cultural attitudes' },
+      { name: 'Technological', hint: 'e.g. smart tech, product innovation' },
+      { name: 'Legal', hint: 'e.g. labelling laws, IP, T&Cs' },
+      { name: 'Environmental', hint: 'e.g. climate targets, zero-waste mandates' }
+    ];
+
+    const form = document.getElementById('pestleForm');
+
+    categories.forEach(({ name, hint }) => {
+      const section = document.createElement('section');
+      section.innerHTML = `
+        <h2>${name}</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Trend or Signal <div class="example">${hint}</div></th>
+              <th>Potential Innovation Relevance</th>
+              <th>Source and URL</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><textarea name="${name}_signal1"></textarea></td>
+              <td><textarea name="${name}_relevance1"></textarea></td>
+              <td><textarea name="${name}_source1"></textarea></td>
+            </tr>
+            <tr>
+              <td><textarea name="${name}_signal2"></textarea></td>
+              <td><textarea name="${name}_relevance2"></textarea></td>
+              <td><textarea name="${name}_source2"></textarea></td>
+            </tr>
+            <tr>
+              <td><textarea name="${name}_signal3"></textarea></td>
+              <td><textarea name="${name}_relevance3"></textarea></td>
+              <td><textarea name="${name}_source3"></textarea></td>
+            </tr>
+          </tbody>
+        </table>
+      `;
+      form.appendChild(section);
+    });
+
     function exportToWord() {
       const header = '<h2 style="font-family: Arial; font-size: 12pt;">PESTLE Export</h2>';
-      const table = document.querySelector('table').outerHTML;
-      const key = document.querySelector('p').outerHTML;
-      const html = `<!DOCTYPE html><html><head><meta charset='utf-8'><title>PESTLE Export</title></head><body style='font-family: Arial; font-size: 10pt;'>${header}${table}${key}</body></html>`;
+      let content = header;
+
+      categories.forEach(({ name }) => {
+        content += `<h3 style='font-family: Arial;'>${name}</h3><table style='font-family: Arial; font-size: 10pt; width: 100%; border-collapse: collapse;' border='1'><tr><th>Trend or Signal</th><th>Potential Innovation Relevance</th><th>Source and URL</th></tr>`;
+        for (let i = 1; i <= 3; i++) {
+          const signal = document.querySelector(`[name='${name}_signal1']`).value;
+          const relevance = document.querySelector(`[name='${name}_relevance1']`).value;
+          const source = document.querySelector(`[name='${name}_source1']`).value;
+          if (signal || relevance || source) {
+            content += `<tr><td>${signal}</td><td>${relevance}</td><td>${source}</td></tr>`;
+          }
+        }
+        content += '</table>';
+      });
+
+      const opp = document.getElementById('opportunity').value;
+      content += `<h3 style='font-family: Arial;'>Key Opportunity</h3><p style='font-family: Arial;'>${opp.replace(/\n/g, '<br>')}</p>`;
+
+      const html = `<!DOCTYPE html><html><head><meta charset='utf-8'></head><body>${content}</body></html>`;
       const blob = new Blob([html], { type: 'application/msword' });
       const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = 'PESTLE_Scanner.doc';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'PESTLE_Scanner.doc';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
     }
   </script>
-
 </body>
 </html>
