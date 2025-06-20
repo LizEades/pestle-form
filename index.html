@@ -59,16 +59,20 @@
       font-size: 12pt;
       cursor: pointer;
     }
+    .highlight-col {
+      width: 30px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
   <h1>PESTLE Opportunity Scanner</h1>
-  <p><strong>Instructions:</strong> Use this tool to identify external forces influencing the category you are exploring. For each PESTLE area, add up to three external signals or forces. Include a short description, note how it may relate to innovation, and add the source and URL. Example prompts are shown in grey.</p>
+  <p><strong>Instructions:</strong> Use this tool to identify external forces influencing the category you are exploring. For each PESTLE area, add up to three external signals or forces. Focus on signals of change (not general context). Include a short description, note how it may relate to innovation, and add the source and URL. Use the checkbox to highlight the trends you think are most relevant to your opportunity. Example prompts are shown in grey.</p>
 
   <form id="pestleForm"></form>
 
-  <h2>Key Opportunity</h2>
-  <textarea id="opportunity" placeholder="e.g. Growing trend that aligns with the innovation goals..."></textarea>
+  <h2>Trend Intersection or Insight</h2>
+  <textarea id="opportunity" placeholder="e.g. The growing preference for eco-packaging (Environmental) combined with rising demand for convenience (Social/Technological) suggests an opportunity to innovate around refillable, easy-dispense packaging formats."></textarea>
 
   <br><br>
   <button onclick="exportToWord()" type="button">Export to Word</button>
@@ -95,24 +99,17 @@
               <th>Trend or Signal <div class="example">${hint}</div></th>
               <th>Potential Innovation Relevance</th>
               <th>Source and URL</th>
+              <th class="highlight-col">✔<div class="example">Most<br>relevant</div></th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><textarea name="${name}_signal1"></textarea></td>
-              <td><textarea name="${name}_relevance1"></textarea></td>
-              <td><textarea name="${name}_source1"></textarea></td>
-            </tr>
-            <tr>
-              <td><textarea name="${name}_signal2"></textarea></td>
-              <td><textarea name="${name}_relevance2"></textarea></td>
-              <td><textarea name="${name}_source2"></textarea></td>
-            </tr>
-            <tr>
-              <td><textarea name="${name}_signal3"></textarea></td>
-              <td><textarea name="${name}_relevance3"></textarea></td>
-              <td><textarea name="${name}_source3"></textarea></td>
-            </tr>
+            ${[1,2,3].map(i => `
+              <tr>
+                <td><textarea name="${name}_signal${i}"></textarea></td>
+                <td><textarea name="${name}_relevance${i}"></textarea></td>
+                <td><textarea name="${name}_source${i}"></textarea></td>
+                <td class="highlight-col"><input type="checkbox" name="${name}_highlight${i}" /></td>
+              </tr>`).join('')}
           </tbody>
         </table>
       `;
@@ -124,20 +121,21 @@
       let content = header;
 
       categories.forEach(({ name }) => {
-        content += `<h3 style='font-family: Arial;'>${name}</h3><table style='font-family: Arial; font-size: 10pt; width: 100%; border-collapse: collapse;' border='1'><tr><th>Trend or Signal</th><th>Potential Innovation Relevance</th><th>Source and URL</th></tr>`;
+        content += `<h3 style='font-family: Arial;'>${name}</h3><table style='font-family: Arial; font-size: 10pt; width: 100%; border-collapse: collapse;' border='1'><tr><th>Trend or Signal</th><th>Potential Innovation Relevance</th><th>Source and URL</th><th>Most Relevant</th></tr>`;
         for (let i = 1; i <= 3; i++) {
-          const signal = document.querySelector(`[name='${name}_signal1']`).value;
-          const relevance = document.querySelector(`[name='${name}_relevance1']`).value;
-          const source = document.querySelector(`[name='${name}_source1']`).value;
+          const signal = document.querySelector(`[name='${name}_signal${i}']`).value;
+          const relevance = document.querySelector(`[name='${name}_relevance${i}']`).value;
+          const source = document.querySelector(`[name='${name}_source${i}']`).value;
+          const highlight = document.querySelector(`[name='${name}_highlight${i}']`).checked ? '✔' : '';
           if (signal || relevance || source) {
-            content += `<tr><td>${signal}</td><td>${relevance}</td><td>${source}</td></tr>`;
+            content += `<tr><td>${signal}</td><td>${relevance}</td><td>${source}</td><td>${highlight}</td></tr>`;
           }
         }
         content += '</table>';
       });
 
       const opp = document.getElementById('opportunity').value;
-      content += `<h3 style='font-family: Arial;'>Key Opportunity</h3><p style='font-family: Arial;'>${opp.replace(/\n/g, '<br>')}</p>`;
+      content += `<h3 style='font-family: Arial;'>Trend Intersection or Insight</h3><p style='font-family: Arial;'>${opp.replace(/\n/g, '<br>')}</p>`;
 
       const html = `<!DOCTYPE html><html><head><meta charset='utf-8'></head><body>${content}</body></html>`;
       const blob = new Blob([html], { type: 'application/msword' });
